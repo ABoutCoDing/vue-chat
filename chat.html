@@ -307,8 +307,9 @@
                             Vue.set(z.users, d.key, d.val());
                         });
                         
-                        users_ref.once("value", d => {
-                            if((d.val() | {})[z.uid]) {
+                        users_ref.child(z.uid).once("value", d => {
+                            
+                            if(d.val()) {
                                 users_ref.child(z.uid).update({
                                     datetime: Date()
                                 })
